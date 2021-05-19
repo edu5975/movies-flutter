@@ -1,35 +1,37 @@
 import 'package:flutter/material.dart';
-import 'package:practica2/src/models/popularDao.dart';
-import 'package:practica2/src/network/apiPopular.dart';
+import 'package:practica2/src/database/databaseHelper.dart';
+import 'package:practica2/src/models/favoriteDao.dart';
 import 'package:practica2/src/utils/configuration.dart';
+import 'package:practica2/views/cardFavorite.dart';
 import 'package:practica2/views/cardPopular.dart';
 
-class PopularScreen extends StatefulWidget {
-  PopularScreen({Key key}) : super(key: key);
+class FavoriteScreen extends StatefulWidget {
+  FavoriteScreen({Key key}) : super(key: key);
 
   @override
   _PopularScreenState createState() => _PopularScreenState();
 }
 
-class _PopularScreenState extends State<PopularScreen> {
-  ApiPopular apiPopular;
+class _PopularScreenState extends State<FavoriteScreen> {
   @override
   void initState() {
     super.initState();
-    apiPopular = ApiPopular();
   }
 
   @override
   Widget build(BuildContext context) {
+    DatabaseHelper database = DatabaseHelper();
+
     return Scaffold(
       appBar: AppBar(
-        title: Text("Popular Movies"),
+        title: Text("Favorites Movies"),
         backgroundColor: Configuration.colorHeader,
       ),
       body: FutureBuilder(
-        future: apiPopular.getAllPopular(),
+        future: database
+            .getFavoritesMovies(1), //SE NECESITA MODIFICAR PARA MÁS USUARIOS
         builder:
-            (BuildContext context, AsyncSnapshot<List<PopularDao>> snapshot) {
+            (BuildContext context, AsyncSnapshot<List<FavoriteDao>> snapshot) {
           if (snapshot.hasError) {
             return Center(child: Text("Error in this request"));
           } else if (snapshot.connectionState == ConnectionState.done) {
@@ -42,13 +44,13 @@ class _PopularScreenState extends State<PopularScreen> {
     );
   }
 
-  Widget _listPopularMovies(List<PopularDao> movies) {
+  Widget _listPopularMovies(List<FavoriteDao> movies) {
     return ListView.builder(
       itemCount: movies.length,
       itemBuilder: (context, index) {
-        PopularDao popular = movies[index];
-        return CardPopular(
-          popular: popular,
+        FavoriteDao favorite = movies[index];
+        return CardFavorite(
+          favorite: favorite,
         );
       },
     );

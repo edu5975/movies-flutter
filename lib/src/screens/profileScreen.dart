@@ -2,6 +2,8 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:practica2/src/database/databaseHelper.dart';
+import 'package:practica2/src/models/userDao.dart';
 import 'package:practica2/src/screens/dashboard.dart';
 import 'package:practica2/src/utils/configuration.dart';
 
@@ -20,6 +22,14 @@ class _ProfileScreenState extends State<ProfileScreen> {
   final picker = ImagePicker();
   String imagePath = "";
 
+  DatabaseHelper _database;
+
+  @override
+  void initState() {
+    super.initState();
+    _database = DatabaseHelper();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -31,12 +41,19 @@ class _ProfileScreenState extends State<ProfileScreen> {
       floatingActionButton: FloatingActionButton(
         backgroundColor: Configuration.colorIcons,
         onPressed: () {
+          UserDao user = UserDao(
+            user: txtNombre.text,
+            email: txtEmail.text,
+            phone: txtPhone.text,
+            picture: imagePath,
+          );
+          _database.insert("tbl_user", user.toJson());
           Navigator.pushAndRemoveUntil(
             context,
             MaterialPageRoute(
               builder: (BuildContext context) => Dashboard(),
             ),
-            ModalRoute.withName('/login'),
+            ModalRoute.withName('/dashboard'),
           );
         },
         child: Icon(Icons.save),
