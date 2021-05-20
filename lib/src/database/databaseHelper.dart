@@ -107,8 +107,12 @@ class DatabaseHelper {
 
   Future<List<FavoriteDao>> getFavoritesMovies(int idUser) async {
     var dbClient = await database;
-    var result = await dbClient
-        .query('tbl_favorite', where: "id_user = ?", whereArgs: [idUser]);
+    var result = await dbClient.query(
+      'tbl_favorite',
+      where: "id_user = ?",
+      whereArgs: [idUser],
+      orderBy: "id desc",
+    );
     var lista = result.map((item) => FavoriteDao.fromJSON(item)).toList();
     return lista.length > 0 ? lista : null;
   }

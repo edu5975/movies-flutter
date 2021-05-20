@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 class FavoriteDao {
+  // ignore: non_constant_identifier_names
   int id, id_user, id_movie;
   String posterPath;
   String backdropPath;
@@ -11,7 +12,9 @@ class FavoriteDao {
 
   FavoriteDao(
       {this.id,
+      // ignore: non_constant_identifier_names
       this.id_user,
+      // ignore: non_constant_identifier_names
       this.id_movie,
       this.posterPath,
       this.backdropPath,

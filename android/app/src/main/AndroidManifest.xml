@@ -4,7 +4,8 @@
         android:label="practica2"
         android:icon="@mipmap/ic_launcher"
         android:requestLegacyExternalStorage="true">
-
+    <meta-data android:name="com.google.android.geo.API_KEY"
+               android:value="AIzaSyDFkzBkjaZvbZlpSR7Gr5L0lYuckFVm4FE"/>
         <activity
             android:name=".MainActivity"
             android:launchMode="singleTop"

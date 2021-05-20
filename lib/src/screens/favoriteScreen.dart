@@ -3,7 +3,6 @@ import 'package:practica2/src/database/databaseHelper.dart';
 import 'package:practica2/src/models/favoriteDao.dart';
 import 'package:practica2/src/utils/configuration.dart';
 import 'package:practica2/views/cardFavorite.dart';
-import 'package:practica2/views/cardPopular.dart';
 
 class FavoriteScreen extends StatefulWidget {
   FavoriteScreen({Key key}) : super(key: key);
@@ -35,7 +34,7 @@ class _PopularScreenState extends State<FavoriteScreen> {
           if (snapshot.hasError) {
             return Center(child: Text("Error in this request"));
           } else if (snapshot.connectionState == ConnectionState.done) {
-            return _listPopularMovies(snapshot.data);
+            return _listFavoriteMovies(snapshot.data);
           } else {
             return Center(child: CircularProgressIndicator());
           }
@@ -44,7 +43,8 @@ class _PopularScreenState extends State<FavoriteScreen> {
     );
   }
 
-  Widget _listPopularMovies(List<FavoriteDao> movies) {
+  Widget _listFavoriteMovies(List<FavoriteDao> movies) {
+    if (movies == null) return Center(child: Text("No hay favoritos"));
     return ListView.builder(
       itemCount: movies.length,
       itemBuilder: (context, index) {

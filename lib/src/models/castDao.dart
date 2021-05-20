@@ -43,4 +43,9 @@ class CastDao {
       order: map['order'],
     );
   }
+
+  @override
+  String toString() {
+    return this.id.toString() + " " + this.name;
+  }
 }

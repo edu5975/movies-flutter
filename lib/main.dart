@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:practica2/src/screens/contactScreen.dart';
 import 'package:practica2/src/screens/dashboard.dart';
 import 'package:practica2/src/screens/detailScreen.dart';
 import 'package:practica2/src/screens/favoriteScreen.dart';
 import 'package:practica2/src/screens/popularScreen.dart';
 import 'package:practica2/src/screens/profileScreen.dart';
+// ignore: unused_import
 import 'package:practica2/src/screens/splashScreen.dart';
 
 void main() {
@@ -22,6 +24,7 @@ class MyApp extends StatelessWidget {
         '/detail': (BuildContext context) => DetailScreen(),
         '/profile': (BuildContext context) => ProfileScreen(),
         '/favorite': (BuildContext context) => FavoriteScreen(),
+        '/contact': (BuildContext context) => ContactScreen(),
       },
       //home: SplashScreenUser(),
       home: Dashboard(),

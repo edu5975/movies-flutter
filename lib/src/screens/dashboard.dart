@@ -86,6 +86,21 @@ class Dashboard extends StatelessWidget {
                     color: Configuration.colorIcons,
                   ),
                 ),
+                ListTile(
+                  leading: Icon(
+                    Icons.contact_page,
+                    color: Configuration.colorIcons,
+                  ),
+                  title: Text('Contact us'),
+                  onTap: () {
+                    Navigator.pop(context);
+                    Navigator.pushNamed(context, '/contact');
+                  },
+                  trailing: Icon(
+                    Icons.chevron_right,
+                    color: Configuration.colorIcons,
+                  ),
+                ),
               ],
             ),
           );
