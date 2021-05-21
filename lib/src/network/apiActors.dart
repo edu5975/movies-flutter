@@ -20,7 +20,6 @@ class ApiActors {
       var trailers = jsonDecode(response.body)['cast'] as List;
       List<CastDao> listActors =
           trailers.map((trailer) => CastDao.fromJSON(trailer)).toList();
-      print(listActors);
       return listActors;
     } else {
       return null;

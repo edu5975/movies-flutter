@@ -15,8 +15,9 @@ class CardGenre extends StatelessWidget {
         vertical: 5,
       ),
       decoration: BoxDecoration(
-        border: Border.all(color: Colors.black),
+        border: Border.all(color: Colors.grey[300]),
         borderRadius: BorderRadius.circular(20),
+        color: Colors.grey[300],
       ),
       child: Text(
         genre,
